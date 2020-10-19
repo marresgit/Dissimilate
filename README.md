@@ -1,2 +1,2 @@
 # Dissimilate
-Just a way to display json output in Flask in html table
+Just a way to display json output in Flask (html table)
