@@ -26,11 +26,11 @@ def check_runner_jobs(url, runner_id, headers):
             for i in runner_job_info:
                 print("Job: "+i['name'])
             print("-------------------------------------------------------")
-
+    if not runner_job_info:
+        print("There are no jobs at the moment")
 
 # run
 get_runners(config.url, config.headers)
 check_runner_jobs(config.url, runner_info, config.headers)
-
 
 # I did not get any good looking output.. just got lazy. But i did something though!
