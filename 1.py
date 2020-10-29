@@ -7,9 +7,9 @@ import config
 runner_info: list = []
 
 # Get runners from Gitlab project
-def get_runners(url, headers):
+def get_runners(url, headers, project_id):
 
-    response = requests.get('{}/api/v4/projects/9/runners/'.format(url), headers=headers)
+    response = requests.get('{}/api/v4/projects/{}/runners/'.format(url,project_id), headers=headers)
     data: dict = response.json()
     for i in data:
         runner_info.append((i['id'], i['description'], i['ip_address']))
@@ -30,7 +30,7 @@ def check_runner_jobs(url, runner_id, headers):
         print("There are no jobs at the moment")
 
 # run
-get_runners(config.url, config.headers)
+get_runners(config.url, config.headers, 9)
 check_runner_jobs(config.url, runner_info, config.headers)
 
 # I did not get any good looking output.. just got lazy. But i did something though!
