@@ -16,7 +16,7 @@ def get_runners(url, headers, project_id):
 
 
 # Get every active running job on Gitlab project
-def check_runner_jobs(url, headers):
+def check_runner_jobs(url, headers, runner_info):
 
     for sublist in runner_info:
         response = requests.get('{}/api/v4/runners/{}/jobs?status=running'.format(url, sublist[0]), headers=headers)
@@ -31,6 +31,6 @@ def check_runner_jobs(url, headers):
 
 # run
 get_runners(config.url, config.headers, 9)
-check_runner_jobs(config.url, runner_info, config.headers)
+check_runner_jobs(config.url, config.headers, runner_info)
 
 # I did not get any good looking output.. just got lazy. But i did something though!
