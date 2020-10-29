@@ -16,7 +16,7 @@ def get_runners(url, headers, project_id):
 
 
 # Get every active running job on Gitlab project
-def check_runner_jobs(url, runner_id, headers):
+def check_runner_jobs(url, headers):
 
     for sublist in runner_info:
         response = requests.get('{}/api/v4/runners/{}/jobs?status=running'.format(url, sublist[0]), headers=headers)
