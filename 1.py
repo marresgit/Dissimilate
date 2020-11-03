@@ -2,6 +2,7 @@
 
 import requests
 import config
+import json
 
 # response = requests.request("GET", url, headers=headers)
 runner_info: list = []
@@ -16,21 +17,22 @@ def get_runners(url, headers, project_id):
 
 
 # Get every active running job on Gitlab project
-def check_runner_jobs(url, headers, runner_info):
-
+# & Pipeline info. On what runner is pipeline running on (jobs,id,runner-info etc).
+def pipeline(url, headers, runner_info):
     for sublist in runner_info:
         response = requests.get('{}/api/v4/runners/{}/jobs?status=running'.format(url, sublist[0]), headers=headers)
         runner_job_info: list = response.json()
         if runner_job_info:
             print("{}(id={}) {}:\n".format(sublist[1],sublist[0],sublist[2]))
             for i in runner_job_info:
-                print("Job: "+i['name'])
+                print("Pipeline: "+str(i['pipeline']['id']))
+                print("Job: "+i['name']+"\n")
             print("-------------------------------------------------------")
     if not runner_job_info:
         print("There are no jobs at the moment")
 
 # run
 get_runners(config.url, config.headers, 9)
-check_runner_jobs(config.url, config.headers, runner_info)
+pipeline(config.url,config.headers, runner_info)
 
 # I did not get any good looking output.. just got lazy. But i did something though!
