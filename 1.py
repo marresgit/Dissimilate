@@ -2,7 +2,6 @@
 
 import requests
 import config
-import json
 
 # response = requests.request("GET", url, headers=headers)
 runner_info: list = []
@@ -26,8 +25,13 @@ def pipeline(url, headers, runner_info):
             print("{}(id={}) {}:\n".format(sublist[1],sublist[0],sublist[2]))
             for i in runner_job_info:
                 print("Pipeline: "+str(i['pipeline']['id']))
-                print("Job: "+i['name']+"\n")
+                print("Stage: "+i['stage']+"\nJob: "+i['name']+"\n")
             print("-------------------------------------------------------")
+        else:
+            print("RUNNER WITH NO JOBS:")
+            print("{}(id={}) {}:\n".format(sublist[1],sublist[0],sublist[2]))
+            print("-------------------------------------------------------")
+
     if not runner_job_info:
         print("There are no jobs at the moment")
 
