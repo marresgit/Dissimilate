@@ -5,4 +5,4 @@ Use this against your Gitlab API for getting out how many jobs are ongoing on wh
 
 
 
-*May be the ugliest way to print json from an api. But its fine by be.*
+*(May be the ugliest way to print json from an api. But its fine by be.)*
